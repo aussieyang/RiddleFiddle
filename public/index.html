@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <!-- Scaling on screen -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  <title>Riddles</title>
+  <link href="css/style.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Nova+Cut' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Dosis:500' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+
+  <main id="gameBoard">
+  </main>
+
+
+<!-- Template for Entry Page (HOST AND PLAYER) -->
+  <script id="splash-template" type="text/template">
+    <div class="splash view">
+      <h1>Riddle Fiddle</h1>
+
+      <div class="buttons">
+        <button id="createGameBtn">CREATE</button>
+        <button id="joinGameBtn">JOIN</button>
+      </div>
+    </div>
+  </script>
+
+
+<!-- Template for Instruction Page (HOST SCREEN) -->
+  <script id="create-template" type="text/template">
+    <div class="create view">
+      <h2 class="instruction">Go to the following URL and click 'JOIN':</h2>
+      <h2 class="info" id="gameURL">http://localhost:9000/</h2>
+      <h2 class="instruction">Enter the following Room Number:</h2>
+      <h2 class="info" id="gameId">49372</h2>
+      <h2 class="instruction">Click 'READY'</h2>
+
+      <button id="startGameBtn">START GAME</button>
+    </div>
+  </script>
+
+
+<!-- Template for Join Page (PLAYER SCREEN) -->
+  <script id="join-template" type="text/template">
+    <div class="join view">
+
+      <div class="player-info">
+        <div>
+          <h2>Your Name:</h2>
+          <input id="playerNameInput" type="text">
+        </div>
+
+        <div>
+          <h2>Game Room:</h2>
+          <input id="gameRoomInput" type="number">
+        </div>
+      </div>
+
+      <button id="readyBtn">READY</button>
+
+      <p id="waitMsg">Waiting for Host to start game...</p>
+    </div>
+  </script>
+
+
+<!-- Template for Game Page (HOST SCREEN) -->
+  <script id="game-template" type="text/template">
+    <div class="game view">
+      <h2 id="gameRiddle">- Poor people have it. Rich people need it. If you eat it you die. -</br></br> What is it?</h2>
+    </div>
+  </script>
+
+
+<!-- Template for Answer Page (PLAYER SCREEN) -->
+  <script id="answer-template" type="text/template">
+    <div class="answer view">
+      <h2>Riddle #2</h2>
+      <div class="answers">
+        <input id="answerInput" type="text">
+        <button id="submitAnswerBtn">SUBMIT</button>
+      </div>
+      <h2 id="tryAgain">Try Again!</h2>
+    </div>
+  </script>
+
+
+  <!-- jQuery -->
+  <script src="libs/jquery-2.0.2.min.js"></script>
+
+  <!-- FastClick is used to eliminate the 300ms delay when clicking items on a mobile device -->
+  <script src="libs/fastclick.js"></script>
+
+  <!-- If Socket.IO is used with Express, then the /socket.io/ path will
+      serve the proper Socket.IO javascript files used by the browser -->
+  <script src="/socket.io/socket.io.js"></script>
+
+  <!-- For all client-side game logic -->
+  <script src="app.js"></script>
+
+
+
+</body>
+
+</html>

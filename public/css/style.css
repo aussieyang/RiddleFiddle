@@ -1,0 +1,120 @@
+/* All Views */
+
+* {
+  font-family: 'Dosis', sans-serif;
+}
+
+main {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.view {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-style: dotted;
+  border-color: grey;
+}
+
+/* splash-template */
+
+.splash h1 {
+  font-family: 'Nova Cut', cursive;
+  font-size: 10vw;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-around;
+  width: 70%;
+  border-style: dotted;
+  border-color: red;
+}
+
+.buttons button {
+  width: 45%;
+  height: 7vw;
+  font-size: 4vw;
+}
+
+/* create-template */
+
+.instruction {
+  text-decoration: underline;
+}
+
+.info {
+  color: red;
+}
+
+.create button {
+  width: 35%;
+  height: 7vw;
+  font-size: 3vw;
+  margin-top: 5vw;
+}
+
+.player-info {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+/* join-template */
+
+.player-info div {
+  border-style: dashed;
+  border-color: red;
+  text-align: center;
+  width: 30%;
+  margin: 2vw;
+}
+
+.player-info div input {
+  width: 70%;
+  height: 5vh;
+  margin: 1vw;
+  font-size: 2vw;
+}
+
+.join button {
+  width: 35%;
+  height: 7vw;
+  font-size: 3vw;
+  margin-top: 5vw;
+}
+
+/* game-template */
+
+.game {
+  padding: 5vw;
+}
+
+/* answer-template */
+
+.answers {
+  width: 80%;
+  text-align: center;
+}
+
+.answers input {
+  width: 40vw;
+  height: 8vw;
+  font-size: 3vw;
+  margin: 1vw;
+  border-style: inset;
+  border-width: thick;
+  border-color: green;
+}
+
+.answers button {
+  width: 40vw;
+  height: 8vw;
+  font-size: 3vw;
+  margin: 1vw;
+}
