@@ -61,7 +61,7 @@ function hostNextRound(data) {
         sendRiddle(data.round, data.gameId);
     } else {
         // If the current round exceeds the number of words, send the 'gameOver' event.
-        // io.sockets.in(data.gameId).emit('gameOver',data);
+        io.sockets.in(data.gameId).emit('gameOver',data);
     }
 }
 

@@ -21,6 +21,7 @@
       IO.socket.on('beginNewGame', IO.beginNewGame );
       IO.socket.on('newRiddleData', IO.onNewRiddleData);
       IO.socket.on('hostCheckAnswer', IO.hostCheckAnswer);
+      IO.socket.on('gameOver', IO.gameOver);
     },
 
     // Client connected
@@ -54,11 +55,19 @@
       App[App.myRole].newRiddle(data);
     },
 
+    // Check answer handler
     hostCheckAnswer : function(data) {
       if(App.myRole === 'Host') {
           App.Host.checkAnswer(data);
       }
     },
+
+    // Game over handler
+    gameOver : function(data) {
+      console.log(data);
+      App[App.myRole].endGame(data);
+    },
+
 
   }
 
@@ -208,7 +217,7 @@
           App.Host.currentRound = data.round;
       },
 
-
+      // Checking answer against pool, RETURN HERE to search array of answers
       checkAnswer : function(data) {
         // Verify that the answer clicked is from the current round. Stops late entries.
         if (data.round == App.currentRound){
@@ -233,6 +242,56 @@
           }
         }
       },
+
+      endGame : function(data) {
+        var endGameScores = [];
+        // Get data for players from screen
+        var result = {'p1' : [$('#player1Score').find('.playerName').text(),
+          +$('#player1Score').find('.score').text()],
+        'p2' : [$('#player2Score').find('.playerName').text(),
+          +$('#player2Score').find('.score').text()],
+        'p3' : [$('#player3Score').find('.playerName').text(),
+          +$('#player3Score').find('.score').text()],
+        'p4' : [$('#player4Score').find('.playerName').text(),
+          +$('#playey4Score').find('.score').text()]};
+        // Find the winner
+        endGameScores.push(result.p1[1]);
+        endGameScores.push(result.p2[1]);
+        endGameScores.push(result.p3[1]);
+        endGameScores.push(result.p4[1]);
+        // Find position of largest values (score)
+        var indices = [];
+        var maxScore = Math.max.apply(null, endGameScores);
+        for (i=0; i<endGameScores.length; i++) {
+            if (endGameScores[i] == maxScore) {
+                indices.push(i);
+            };
+        };
+        // Find corresponding winners and push into winners array
+        var winners = [];
+        for (i=0; i<indices.length; i++) {
+            var key = 'p'+ (indices[i]+1);
+            winners.push(result[key][0]);
+        }
+        // Display the winner (or winners)
+        if(winners.length == 1) {
+          $('#countdownTimer').text('Game Over');
+          $('#gameRiddle').text('The Winner Is ...');
+          $('#gameQuestion').text(winners[0].slice(0, -2) + '!');
+        } else {
+          $('#countdownTimer').text('Game Over');
+          $('#gameRiddle').text('The Winners Are ...');
+          $('#gameQuestion').empty();
+          for (i=0; i<winners.length; i++) {
+          $('#gameQuestion').append(winners[i].slice(0, -2) + ', ');
+          };
+        };
+
+        // // Reset game data
+        // App.Host.numPlayersInRoom = 0;
+        // App.Host.isNewGame = true;
+      },
+
 
     },
 
