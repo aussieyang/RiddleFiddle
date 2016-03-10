@@ -41,6 +41,7 @@
       <h2 class="instruction">Click 'READY'</h2>
 
       <button id="startGameBtn">START GAME</button>
+      <div id="playersWaiting"></div>
     </div>
   </script>
 
@@ -63,7 +64,7 @@
 
       <button id="readyBtn">READY</button>
 
-      <p id="waitMsg">Waiting for Host to start game...</p>
+      <div id="waitMsg"></div>
     </div>
   </script>
 
@@ -71,7 +72,24 @@
 <!-- Template for Game Page (HOST SCREEN) -->
   <script id="game-template" type="text/template">
     <div class="game view">
-      <h2 id="gameRiddle">- Poor people have it. Rich people need it. If you eat it you die. -</br></br> What is it?</h2>
+      <h1 id="countdownTimer"></h1>
+      <h2 id="gameRiddle"></h2>
+      <h2 id="gameQuestion"></h2>
+
+      <div class="scores">
+        <div id="player1Score" class="playerScore">
+          <span class="playerName">Player A</span><span class="score">0</span>
+        </div>
+        <div id="player2Score" class="playerScore">
+          <span class="playerName">Player B</span><span class="score">0</span>
+        </div>
+        <div id="player3Score" class="playerScore">
+          <span class="playerName">Player C</span><span class="score">0</span>
+        </div>
+        <div id="player4Score" class="playerScore">
+          <span class="playerName">Player D</span><span class="score">0</span>
+        </div>
+      </div>
     </div>
   </script>
 
@@ -79,12 +97,11 @@
 <!-- Template for Answer Page (PLAYER SCREEN) -->
   <script id="answer-template" type="text/template">
     <div class="answer view">
-      <h2>Riddle #2</h2>
+      <h2 id="roundCount">Error!</h2>
       <div class="answers">
         <input id="answerInput" type="text">
         <button id="submitAnswerBtn">SUBMIT</button>
       </div>
-      <h2 id="tryAgain">Try Again!</h2>
     </div>
   </script>
 

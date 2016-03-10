@@ -65,6 +65,10 @@ main {
   justify-content: center;
 }
 
+#playersWaiting {
+  padding: 3vw;
+}
+
 /* join-template */
 
 .player-info div {
@@ -89,10 +93,22 @@ main {
   margin-top: 5vw;
 }
 
+#waitMsg {
+  padding: 3vw;
+}
+
 /* game-template */
 
 .game {
   padding: 5vw;
+}
+
+.scores {
+  width: 70%;
+  margin-top: 2vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
 /* answer-template */
@@ -117,4 +133,8 @@ main {
   height: 8vw;
   font-size: 3vw;
   margin: 1vw;
+}
+
+#tryAgain {
+  display: none;
 }
