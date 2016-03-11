@@ -115,10 +115,16 @@ function sendRiddle(index, gameId) {
     console.log(data.gameId);
 }
 
-
+// RETURN to add to riddles - store on Mongo
 var riddlePool = [
-  ['- Poor people have it. Rich people need it. If you eat it you die. - ', 'What is it?', 'Nothing'],
-  ['- If I drink, I die. If I eat, I am fine. -', 'What am I?', 'Fire'],
-  ['- What word becomes shorter when you add two letters to it? -', '', 'Short'],
-  ['- If I have it, I don’t share it. If I share it, I don’t have it. -', 'What is it?', 'Secrets']
+  ['- Poor people have it. Rich people need it. If you eat it you die. - ', 'What is it?', ['Nothing', 'nothing']],
+  ['- If I drink, I die. If I eat, I am fine. -', 'What am I?', ['Fire', 'fire', 'Fires', 'fires', 'A fire', 'a fire']],
+  ['- What word becomes shorter when you add two letters to it? -', '', ['Short', 'short']],
+  ['- If I have it, I don’t share it. If I share it, I don’t have it. -', 'What is it?', ['Secrets', 'secrets', 'a secret', 'A secret', 'secret', 'Secret']],
+  ['- They come out at night without being called, and are lost in the day without being stolen. -', 'What are they?', ['Stars', 'stars', 'the stars', 'The stars', 'a star', 'A star']],
+  ['- We see it once in a year, twice in a week, and never in a day. -', 'What is it?', ['E', 'e', 'letter e', 'Letter E', 'Letter e', 'letter E']],
+  ['- What is so delicate that saying its name breaks it? -', '', ['Silence', 'silence']],
+  ['- What can you catch but not throw? -', '', ['A cold', 'colds', 'Colds']],
+  ['- What has hands but can not clap? -', '', ['A clock', 'Clocks', 'clocks']],
+  ['- I’m tall when I’m young and I’m short when I’m old. -', 'What am I?', ['A candle', 'candles', 'Candles', 'a candle']]
 ]

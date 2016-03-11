@@ -16,8 +16,19 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-style: dotted;
-  border-color: grey;
+}
+
+button:hover {
+  background-color: rgb(255, 204, 153);
+}
+
+h1 {
+  transition: all .2s ease-in-out;
+}
+
+h1:hover {
+  transform: scale(1.35);
+  color: rgb(230, 115, 0);
 }
 
 /* splash-template */
@@ -31,14 +42,21 @@ main {
   display: flex;
   justify-content: space-around;
   width: 70%;
-  border-style: dotted;
-  border-color: red;
 }
 
 .buttons button {
   width: 45%;
   height: 7vw;
   font-size: 4vw;
+}
+
+#splashImg {
+  width: 100%;
+  padding: 5vw;
+}
+
+#splashImg img {
+  width: 100%;
 }
 
 /* create-template */
@@ -72,18 +90,16 @@ main {
 /* join-template */
 
 .player-info div {
-  border-style: dashed;
-  border-color: red;
   text-align: center;
   width: 30%;
   margin: 2vw;
 }
 
 .player-info div input {
-  width: 70%;
+  width: 80%;
   height: 5vh;
   margin: 1vw;
-  font-size: 2vw;
+  font-size: 3vw;
 }
 
 .join button {

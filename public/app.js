@@ -4,6 +4,9 @@
 
   'use strict'
 
+  var sound = new Audio ('FeelinGood.mp3');
+  sound.play()
+
   // Namespacing the socket code under IO
   var IO = {
 
@@ -113,7 +116,7 @@
     },
 
     // Click handlers for buttons
-    bindEvents: function () {
+    bindEvents: function() {
       // For Host
       App.$doc.on('click', '#createGameBtn', App.Host.onCreateClick);
       // App.$doc.on('click', '#startGameBtn' /*Go to Game Page*/);
@@ -149,7 +152,6 @@
         App.mySocketId = data.mySocketId;
         App.myRole = 'Host';
         App.Host.numPlayersInRoom = 0;
-
         App.Host.displayInstructionView();
       },
 
@@ -217,14 +219,14 @@
           App.Host.currentRound = data.round;
       },
 
-      // Checking answer against pool, RETURN HERE to search array of answers
+      // Checking answer against pool, RETURN HERE to normalise answers
       checkAnswer : function(data) {
         // Verify that the answer clicked is from the current round. Stops late entries.
         if (data.round == App.currentRound){
           // Reference for current player score
           var $pScore = $('#' + data.playerId);
-          // Check if correct
-          if( App.Host.currentCorrectAnswer == data.answer ) {
+          // Check if correct by checking if answer in array of answers
+          if( $.inArray(data.answer, App.Host.currentCorrectAnswer) != -1) {
             // Increment the player's score
             $pScore.text(+$pScore.text() + 1);
             // Advance the round
@@ -283,15 +285,10 @@
           $('#gameRiddle').text('The Winners Are ...');
           $('#gameQuestion').empty();
           for (i=0; i<winners.length; i++) {
-          $('#gameQuestion').append(winners[i].slice(0, -2) + ', ');
+          $('#gameQuestion').append(winners[i].slice(0, -2) + ' & ');
           };
         };
-
-        // // Reset game data
-        // App.Host.numPlayersInRoom = 0;
-        // App.Host.isNewGame = true;
       },
-
 
     },
 
@@ -307,6 +304,8 @@
 
       // Handler for clicking Join button
       onJoinClick: function () {
+          // Pause music
+          sound.pause();
           // Display the Join Game view.
           App.$gameBoard.html(App.$templateJoin);
       },
@@ -323,6 +322,9 @@
          // Set the appropriate properties for the current player
          App.myRole = 'Player';
          App.Player.myName = data.playerName;
+
+         // Disable second button click
+         $('#readyBtn').attr('disabled', '');
 
          console.log(App.Player.myName)
       },
