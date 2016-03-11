@@ -5,7 +5,8 @@
   'use strict'
 
   var sound = new Audio ('FeelinGood.mp3');
-  sound.play()
+  sound.loop = true;
+  sound.play();
 
   // Namespacing the socket code under IO
   var IO = {
