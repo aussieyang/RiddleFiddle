@@ -4,6 +4,7 @@
 
   'use strict'
 
+  // Audio object
   var sound = new Audio ('FeelinGood.mp3');
   sound.loop = true;
   sound.play();
