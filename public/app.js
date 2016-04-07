@@ -7,7 +7,7 @@
   // Audio object
   var sound = new Audio ('FeelinGood.mp3');
   sound.loop = true;
-  sound.play();
+  // sound.play();
 
   // Namespacing the socket code under IO
   var IO = {
@@ -38,11 +38,13 @@
 
     // Call initialise game function for host
     onNewGameCreated : function(data) {
+      console.log('game created');
       App.Host.gameInit(data);
     },
 
     // Player joins behaviour
     playerJoinedRoom : function(data) {
+      console.log('New Player joined');
       // Update waiting screen function called for Player and Host
       App[App.myRole].updateWaitingScreen(data);
     },
@@ -72,7 +74,6 @@
       console.log(data);
       App[App.myRole].endGame(data);
     },
-
 
   }
 

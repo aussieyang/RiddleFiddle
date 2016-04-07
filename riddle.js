@@ -4,9 +4,9 @@ var gameSocket;
 
 // Export module initialising game
 
-exports.initGame = function(request, response){
-    io = request;
-    gameSocket = response;
+exports.initGame = function(server, currentSocket){
+    io = server;
+    gameSocket = currentSocket;
     gameSocket.emit('connected', { message: "You are connected!" });
 
     // Host events
@@ -28,14 +28,18 @@ exports.initGame = function(request, response){
 // Triggered by clicking Create
 function hostCreateNewGame() {
 
+    var socket = this;
+
     // Create a unique Socket.IO Room
     var thisGameId = ( Math.random() * 100000 ) | 0;
 
     // Return the Room ID (gameId) and the socket ID (mySocketId) to the browser client
-    gameSocket.emit('newGameCreated', {gameId: thisGameId, mySocketId: gameSocket.id});
+    // socket.emit('newGameCreated', {gameId: thisGameId, mySocketId: gameSocket.id});
 
     // Join the Room and wait for the players
-    gameSocket.join(thisGameId.toString());
+    socket.join(thisGameId.toString());
+
+    io.sockets.to(thisGameId.toString()).emit('newGameCreated', {gameId: thisGameId, mySocketId: socket.id});
 };
 
 // Triggered when room is full (4 people)
@@ -75,11 +79,13 @@ function playerJoinGame(data) {
     // A reference to the player's Socket.IO socket object
     var socket = this;
     // Look up the room ID in the Socket.IO manager object.
-    var room = gameSocket.rooms['' + data.gameId];
+    // var room = gameSocket.rooms['' + data.gameId];
     console.log(data.gameId);
-    console.log('room', room);
+    // console.log('room', room);
     // If the room exists...
-    if( room != undefined ){
+
+    // Fix this to check room exists
+    if( data.gameId ){
         // attach the socket id to the data object.
         data.mySocketId = socket.id;
         // Join the room
