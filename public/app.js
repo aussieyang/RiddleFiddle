@@ -7,7 +7,7 @@
   // Audio object
   var sound = new Audio ('FeelinGood.mp3');
   sound.loop = true;
-  // sound.play();
+  sound.play();
 
   // Namespacing the socket code under IO
   var IO = {
